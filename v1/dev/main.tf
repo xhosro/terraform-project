@@ -8,3 +8,11 @@ resource "aws_vpc" "main" {
     Name = "${var.env}-main"
   }
 }
+
+resource "aws_subnet" "private" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.private_subnet_cidr
+  tags = {
+    Name = "${var.env}-private-subnet-main"
+  }
+}

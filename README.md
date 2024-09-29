@@ -69,3 +69,18 @@ and then : chmod +x tf.sh
 
 let's run ./tf.sh apply
 then ./tf.sh destroy
+
+
+
+# Mono repo approach
+
+first we create a vpc module
+we never initialize terraform provider inside the module
+change the provider folder to versions
+add main.tf with source of module vpc into env-live/dev/vpc
+in this method we can update the modules and environments in the same place
+It's good method for one person devops team
+then initialize the terraform in vpc folder
+then create a subnet module
+we dont nedd data.tf and add vpc_id variable
+then create a subnet dev/env

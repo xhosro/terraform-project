@@ -13,6 +13,9 @@ First approach issues:
 
 we delete all : terraform destroy --auto-approve
 
+
+# splitting project to multiple components
+
 for second approach we add vpc folder and subnet folder to dev env
 and agian terraform init && apply - for subnet folder too
 
@@ -52,3 +55,16 @@ output "terraform_state" {
 and we add vpc_id output to the vpc folder 
 and we add vpi_id data to the subnet resource  for resolving the error message
 
+so you only need to refresh a subset of infrastructure each time you run plan
+
+we dont have a dependency graph, so we need to create & destroy infta in the same order
+
+we you split terraform in multiple components, you need to create some kind of obstruction layer
+or you use terragrant
+or simple bash script that applies one component at the time or integrate to CI/CD pipeline
+for example you could have github action step for vpc component followed by step to apply subnet
+
+so we can add tf.sh for automation of process
+and then : chmod +x tf.sh
+
+let's run ./tf.sh apply

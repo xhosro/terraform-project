@@ -68,3 +68,4 @@ so we can add tf.sh for automation of process
 and then : chmod +x tf.sh
 
 let's run ./tf.sh apply
+then ./tf.sh destroy

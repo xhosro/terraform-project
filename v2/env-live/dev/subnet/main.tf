@@ -2,10 +2,11 @@ provider "aws" {
   region = var.region
 }
 
-module "subnet" {
-  source = "../../../modules/subnet"
+# module "subnet" {
+#   source = "../../../modules/subnet"
 
-  vpc_id           = "???"
-  env = "dev"
-  cidr_block        = "10.0.0.0/19"
-}
+#   vpc_id           = "???"
+#   env = "dev"
+#   cidr_block        = "10.0.0.0/19"
+# }
+

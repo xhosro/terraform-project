@@ -82,5 +82,35 @@ in this method we can update the modules and environments in the same place
 It's good method for one person devops team
 then initialize the terraform in vpc folder
 then create a subnet module
-we dont nedd data.tf and add vpc_id variable
+we dont need data.tf and add vpc_id variable
+---
 then create a subnet dev/env
+so we have the problem again with vpc_id ??
+since we have output variables in vpc modules. you can use it right away.
+so we add data and output resources for testing :
+
+terraform init && appply
+
+test = {
+  "backend" = "local"
+  "config" = {
+    "path" = "../vpc/terraform.tfstate"
+  }
+  "defaults" = null
+  "outputs" = {}
+  "workspace" = tostring(null)
+
+
+  so we dont have any ouputs variables here
+  if you create vpc & subnet modules in same folder , you can use vpc module as an input variable
+  but in diffrent folder dosent work
+  so fo fix this , we add a outputs.tf to vpc live env
+
+  output "vpc_id" {
+  description = "VPC id."
+  value = module.vpc.vpc_id
+}
+
+
+so we go to vpc and apply it
+

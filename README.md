@@ -72,7 +72,7 @@ then ./tf.sh destroy
 
 
 
-# Mono repo approach
+# Mono repo approach with modules
 
 first we create a vpc module
 we never initialize terraform provider inside the module
@@ -113,4 +113,19 @@ test = {
 
 
 so we go to vpc and apply it
+
+
+remove test variable in data.tf and use data attribute as input for subnet module
+
+module "subnet" {
+  source = "../../../modules/subnet"
+
+  vpc_id           = data.terraform_remote_state.vpc.outputs.vpc_id
+
+
+terraform init && apply
+
+It's work
+
+----------------------------------------------------------------
 
